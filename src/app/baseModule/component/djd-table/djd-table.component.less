@@ -1,0 +1,43 @@
+.djd-table-frame {
+  .table-frame {
+    border: solid 1px #dddddd;
+    border-radius: 4px;
+    height: 70vh;
+    overflow-y: auto;
+  }
+  
+  .table{
+    & tr {
+      &:hover{
+        background-color: #f0f0f0;
+      }
+
+      & th{
+        background-color: #f6f6f6;
+        border-bottom: solid 1px #dddddd;
+        text-align: center;
+
+        &.thEdit, &.thDele {
+          width: 60px;
+        }
+      }
+
+      & td {
+        &.center {
+          text-align: center;
+        }
+        & md-icon{
+          font-size: 22px;
+          color: #666;
+          cursor: pointer;
+
+          &:hover{
+            color:#5c8cc1;
+          }
+        }
+      }
+    }
+  }
+}
+
+

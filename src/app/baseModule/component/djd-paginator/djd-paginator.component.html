@@ -1,0 +1,22 @@
+<div style="text-align: center;">
+  <div ng-if="pageCount > 0" class="pagination">
+    <ul>
+      <li><span>共<span>{{pageCount}}</span>页，<span>{{rowsCount}}</span>条记录</span></li>
+      <li [class.disabled]="pageIndex === 1" (click)="pageOne()">
+        <a title="第1页" href="javascript:void(0);">&lt;&lt;</a>
+      </li>
+      <li [class.disabled]="pageIndex === 1" (click)="pageUp()">
+        <a title="上一页{{pageIndex > 1 ? '(第' + (pageIndex-1) + '页)':''}}" href="javascript:void(0);">&lt;</a>
+      </li>
+      <li [ngClass]="{active: pageIndex === page.index, disabled: pageIndex === page.index}" *ngFor="let page of pageList" (click)="pageClick(page.index)">
+        <a title="第{{page.index}}页" href="javascript:void(0);">{{page.index}}</a>
+      </li>
+      <li [class.disabled]="pageIndex === pageCount" (click)="pageDown()">
+        <a title="下一页(第{{pageIndex + 1}}页)" href="javascript:void(0);">&gt;</a>
+      </li>
+      <li [class.disabled]="pageIndex === pageCount" (click)="pageLast()">
+        <a title="末页(第{{pageCount}}页)" href="javascript:void(0);">&gt;&gt;</a>
+      </li>
+    </ul>
+  </div>
+</div>

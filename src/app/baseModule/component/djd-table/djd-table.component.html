@@ -1,0 +1,27 @@
+<div class="djd-table-frame">
+
+  <div class="table-frame">
+    <table class="table">
+      <thead>
+        <tr>
+          <th *ngFor="let field of params.fields">{{field.title}}</th>
+          <th *ngFor="let option of params.options" [style.width]="option.width || '50px'">{{option.title}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of dataList">
+          <td *ngFor="let field of params.fields" [style.text-align]="field.textAlign || 'left'">{{item[field.field]}}</td>
+          <td *ngFor="let option of params.options"
+            [style.text-align]="option.textAlign || 'center'"
+            >
+            <md-icon (click)="openDialog()">{{option.icon}}</md-icon>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <djd-paginator [rowsCount]="rowsCount" [pageSize]="pageSize" (onChange)="onPageIndexChanged($event)"></djd-paginator>
+
+
+</div>
