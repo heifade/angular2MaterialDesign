@@ -1,3 +1,28 @@
 <div>
-  aa
+  <div md-dialog-title>标题</div>
+  <md-dialog-content>
+    <form class="example-form">
+      <md-form-field class="example-full-width">
+        <input mdInput placeholder="用户名" value="" />
+      </md-form-field>
+      <md-form-field class="example-full-width">
+        <input mdInput placeholder="姓名" value="" />
+      </md-form-field>
+      <md-form-field class="example-full-width">
+        <input mdInput placeholder="性别" value="" />
+      </md-form-field>
+      <md-form-field class="example-full-width">
+        <input mdInput placeholder="电话号码" value="" />
+      </md-form-field>
+      <md-form-field class="example-full-width">
+        <input mdInput placeholder="身份证号" value="" />
+      </md-form-field>
+    </form>
+  </md-dialog-content>
+  <md-dialog-actions>
+    <button md-button md-dialog-close>No</button>
+    <!-- Can optionally provide a result for the closing dialog. -->
+    <button md-button [md-dialog-close]="true">Yes</button>
+  </md-dialog-actions>
+
 </div>

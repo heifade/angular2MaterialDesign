@@ -17,7 +17,7 @@ export class UserComponent implements OnInit {
       url: "/api/User/HTAdmin?SearchPart=",
       fields: [
         { title: '用户名', field: 'AdminCode' },
-        { title: '姓别', field: 'AdminName' },
+        { title: '姓名', field: 'AdminName' },
         { title: '性别', field: 'Gender' },
         { title: '电话号码', field: 'PhoneNo' },
         { title: '身份证号', field: 'CardNo' },

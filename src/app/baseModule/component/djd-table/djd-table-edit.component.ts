@@ -12,10 +12,12 @@ export class DjdTableEditDialog {
   constructor(
     public dialogRef: MdDialogRef<DjdTableEditDialog>,
     @Inject(MD_DIALOG_DATA) public data: any) {
-    }
 
-  onNoClick(): void {
-    this.dialogRef.close();
+      
   }
+
+  // onNoClick(): void {
+  //   this.dialogRef.close();
+  // }
 
 }

@@ -4,7 +4,6 @@ import { MdSort, MdPaginator, MdPaginatorIntl, MdDialog, MdDialogRef } from '@an
 
 import { Http, Response } from "@angular/http";
 import { TablePaginationDataSourceService } from '../../service/tablePaginationDataSource.service';
-import { PaginatorIntl } from '../../PaginatorIntl';
 
 import { G } from '../../../common/G';
 import { HttpService, ResponseData } from '../../service/http.service';
@@ -46,9 +45,7 @@ export interface DjdTableParams {
   selector: 'djd-table',
   styleUrls: ['./djd-table.component.less'],
   templateUrl: './djd-table.component.html',
-  providers: [
-    { provide: MdPaginatorIntl, useClass: PaginatorIntl }
-  ]
+  providers: [ ]
 })
 
 export class DjdTable implements OnInit {
@@ -117,8 +114,8 @@ export class DjdTable implements OnInit {
 
   private openDialog() {
     let dialogRef = this.dialog.open(DjdTableEditDialog, {
-      width: '250px',
-      height: '40px',
+      width: '500px',
+      height: '400px',
       data: { name: '11' }
     });
 
