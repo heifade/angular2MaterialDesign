@@ -11,7 +11,7 @@ import { DjdTableParams } from '../baseModule/component/djd-table/djd-table.comp
 })
 export class UserComponent implements OnInit {
 
-  private editForm: FormGroup;
+  
   private params: DjdTableParams;
   
 
@@ -34,6 +34,39 @@ export class UserComponent implements OnInit {
           key1: 1
         }
       },
+      controls: [
+        ["AdminCode", new FormControl('',
+          [
+            Validators.required,
+          ]
+        )],
+        ["AdminName", new FormControl('',
+          [
+            Validators.required,
+          ]
+        )],
+        ["Gender", new FormControl('',
+          [
+            Validators.required,
+          ]
+        )],
+        ["PhoneNo", new FormControl('',
+          [
+            Validators.required,
+          ]
+        )],
+        ["Birthday", new FormControl('',
+          [
+            Validators.required,
+          ]
+        )],
+        ["CardNo", new FormControl('',
+          [
+            Validators.required,
+          ]
+        )]
+      ],
+    
 
       // fetchData: ({pageIndex, pageSize}): Promise<ResponseData> => {
       //   let url = `${this.params.url}&PageIndex=${pageIndex - 1}&PageCapacity=${pageSize}`;
@@ -55,38 +88,8 @@ export class UserComponent implements OnInit {
 
   ngOnInit() {
 
-    this.editForm = new FormGroup({
-      "AdminCode": new FormControl('',
-        [
-          Validators.required,
-        ]
-      ),
-      "AdminName": new FormControl('',
-        [
-          Validators.required,
-        ]
-      ),
-      "Gender": new FormControl('',
-        [
-          Validators.required,
-        ]
-      ),
-      "PhoneNo": new FormControl('',
-        [
-          Validators.required,
-        ]
-      ),
-      "Birthday": new FormControl('',
-        [
-          Validators.required,
-        ]
-      ),
-      "CardNo": new FormControl('',
-        [
-          Validators.required,
-        ]
-      ),
-    });
+    
+    
     
 
   }

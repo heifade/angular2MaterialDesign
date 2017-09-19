@@ -9,8 +9,9 @@ import { ImportModule } from './import.module';
 import { HttpService } from './service/http.service';
 import { LocalStorageService } from './service/localStorage.service';
 import { DjdTable } from './component/djd-table/djd-table.component';
-import { DjdTableEdit } from './component/djd-table/djd-table-edit.component';
+import { DjdTableEdit } from './component/djd-table-edit/djd-table-edit.component';
 import { DjdPaginator } from './component/djd-paginator/djd-paginator.component';
+import { DjdFormField } from './component/djd-form-field/djd-form-field.component';
 
 
 
@@ -18,8 +19,9 @@ import { DjdPaginator } from './component/djd-paginator/djd-paginator.component'
 @NgModule({
   declarations: [
     DjdTable,
-    DjdPaginator,
     DjdTableEdit,
+    DjdPaginator,
+    DjdFormField,
   ],
   entryComponents: [
     // DjdTableEditDialog,
@@ -37,6 +39,7 @@ import { DjdPaginator } from './component/djd-paginator/djd-paginator.component'
     ImportModule,
     DjdTable,
     DjdTableEdit,
+    DjdFormField,
   ],
   providers: [
     LocalStorageService,

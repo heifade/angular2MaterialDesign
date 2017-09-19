@@ -1,12 +1,14 @@
 
-import { Component, ViewChild, OnInit, Input, Inject } from '@angular/core';
+import { Component, ViewChild, OnInit, Input, Inject, ContentChildren, QueryList, AfterViewInit, AfterContentInit } from '@angular/core';
 import { MdSort, MdPaginator, MdPaginatorIntl, MdDialog, MdDialogRef } from '@angular/material';
+import { FormGroup, FormControl, FormBuilder, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 
 import { Http, Response } from "@angular/http";
 import { TablePaginationDataSourceService } from '../../service/tablePaginationDataSource.service';
 
 import { G } from '../../../common/G';
 import { HttpService, ResponseData } from '../../service/http.service';
+import { DjdFormField } from '../djd-form-field/djd-form-field.component';
 // import { DjdTableEditDialog } from './djd-table-edit.component';
 
 
@@ -41,6 +43,7 @@ export interface DjdTableParams {
   options?: Array<DjdTableParamsOption>; //操作
   getUrlParams?: () => object; //获取url的方法
   fetchData?({ pageIndex, pageSize }): Promise<ResponseData>; // 当本组件定义的API访问方式无法满足需要时，可以自定义API访问方式
+  controls?: [[string, AbstractControl]]; // 验证
 }
 
 @Component({
@@ -50,7 +53,7 @@ export interface DjdTableParams {
   providers: [ ]
 })
 
-export class DjdTable implements OnInit {
+export class DjdTable implements OnInit, AfterContentInit {
 
   @Input()
   public params: DjdTableParams;
@@ -60,20 +63,38 @@ export class DjdTable implements OnInit {
   private rowsCount: number;
   private pageSize = G.PageSize;
 
+  private editForm: FormGroup;
+
+  
 
 
 
-
-
-
-
+  @ContentChildren(DjdFormField) formFieldList: QueryList<DjdFormField>;
+  
+  
   constructor(private httpService: HttpService, private dialog: MdDialog) {
+
+    this.editForm = new FormGroup({ });
+
   }
 
   ngOnInit() {
     this.fetchData({ pageIndex: 1, pageSize: G.PageSize });
 
-    
+    let controls = this.params.controls;
+    if(controls) {
+      controls.forEach(([name, control]) => {
+        this.editForm.addControl(name, control);
+      });
+    }
+  }
+
+
+  // 当把内容投影进组件之后调用
+  ngAfterContentInit() {
+    this.formFieldList.forEach((item: DjdFormField) => {
+      item.form = this.editForm;
+    });
   }
 
   onPageIndexChanged(pageIndex) {
@@ -138,21 +159,20 @@ export class DjdTable implements OnInit {
 
   onEdit(option, e) { // 点击编辑按钮时触发
     this.isEditing = true;
-    console.log(11, e);
   }
 
   onDelete(option, e) { // 点击删除按钮时触发
-    console.log(11, e);
+    
   }
 
   onCloseEdit(e){ // 关闭编辑页面
     this.isEditing = false;
   }
 
-
   onSubmit(e) {
-    // console.log(99, this.editForm.value);
+    console.log(this.editForm.value);
   }
+
 
   onCancelEdit(e) {
     // this.onCloseEdit.emit();
