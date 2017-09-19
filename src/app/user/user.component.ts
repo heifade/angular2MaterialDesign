@@ -1,5 +1,6 @@
 
 import { Component, ViewChild, OnInit } from '@angular/core';
+import { FormGroup, FormControl, FormBuilder, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 import { HttpService, ResponseData } from '../baseModule/service/http.service';
 import { DjdTableParams } from '../baseModule/component/djd-table/djd-table.component';
 
@@ -10,7 +11,9 @@ import { DjdTableParams } from '../baseModule/component/djd-table/djd-table.comp
 })
 export class UserComponent implements OnInit {
 
+  private editForm: FormGroup;
   private params: DjdTableParams;
+  
 
   constructor(private httpService: HttpService) {
     this.params = {
@@ -23,14 +26,15 @@ export class UserComponent implements OnInit {
         { title: '身份证号', field: 'CardNo' },
       ],
       options: [
-        { title: '编辑', icon: 'open_in_new' },
-        { title: '删除', icon: 'delete_forever' },
+        { title: '编辑', icon: 'open_in_new', doType: 'edit' },
+        { title: '删除', icon: 'delete_forever', doType: 'delete' },
       ],
-      getUrlParams: (): {} => {
+      getUrlParams: (): object => {
         return {
           key1: 1
         }
       },
+
       // fetchData: ({pageIndex, pageSize}): Promise<ResponseData> => {
       //   let url = `${this.params.url}&PageIndex=${pageIndex - 1}&PageCapacity=${pageSize}`;
       //   return new Promise<ResponseData>((resolve, reject) => {
@@ -44,12 +48,48 @@ export class UserComponent implements OnInit {
     }
   }
 
+  
+
+  
+
 
   ngOnInit() {
 
+    this.editForm = new FormGroup({
+      "AdminCode": new FormControl('',
+        [
+          Validators.required,
+        ]
+      ),
+      "AdminName": new FormControl('',
+        [
+          Validators.required,
+        ]
+      ),
+      "Gender": new FormControl('',
+        [
+          Validators.required,
+        ]
+      ),
+      "PhoneNo": new FormControl('',
+        [
+          Validators.required,
+        ]
+      ),
+      "Birthday": new FormControl('',
+        [
+          Validators.required,
+        ]
+      ),
+      "CardNo": new FormControl('',
+        [
+          Validators.required,
+        ]
+      ),
+    });
+    
+
   }
 
-  pageChanged(e) {
-
-  }
+  
 }

@@ -1,27 +1,49 @@
-<div class="djd-table-frame">
+<div>
 
-  <div class="table-frame">
-    <table class="table">
-      <thead>
-        <tr>
-          <th *ngFor="let field of params.fields">{{field.title}}</th>
-          <th *ngFor="let option of params.options" [style.width]="option.width || '50px'">{{option.title}}</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of dataList">
-          <td *ngFor="let field of params.fields" [style.text-align]="field.textAlign || 'left'">{{item[field.field]}}</td>
-          <td *ngFor="let option of params.options"
-            [style.text-align]="option.textAlign || 'center'"
-            >
-            <md-icon (click)="openDialog()">{{option.icon}}</md-icon>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="djd-table-frame" [class.hide]="isEditing" [class.showing]="!isEditing">
+    <div class="table-frame">
+      <table class="table">
+        <thead>
+          <tr>
+            <th *ngFor="let field of params.fields">{{field.title}}</th>
+            <th *ngFor="let option of params.options" [style.width]="option.width || '50px'">{{option.title}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of dataList">
+            <td *ngFor="let field of params.fields" [style.text-align]="field.textAlign || 'left'">{{item[field.field]}}</td>
+            <td *ngFor="let option of params.options" [style.text-align]="option.textAlign || 'center'">
+              <md-icon (click)="optionClick(option, $event)">{{option.icon}}</md-icon>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <djd-paginator [rowsCount]="rowsCount" [pageSize]="pageSize" (onChange)="onPageIndexChanged($event)"></djd-paginator>
   </div>
 
-  <djd-paginator [rowsCount]="rowsCount" [pageSize]="pageSize" (onChange)="onPageIndexChanged($event)"></djd-paginator>
+  <!-- <djd-table-edit [class.hide]="!isEditing" [class.showing]="isEditing" (onCloseEdit)="onCloseEdit($event)"></djd-table-edit> -->
 
+  <md-card class="md-card-edit" [class.hide]="!isEditing" [class.showing]="isEditing" (onCloseEdit)="onCloseEdit($event)">
+      
+      <md-card-header>
+        <md-card-title>编辑用户</md-card-title>
+      </md-card-header>
+      <md-card-content>
+  
+  
+        <ng-content></ng-content>
+  
+          
+  
+      </md-card-content>
+      <md-card-actions>
+        <button md-raised-button (click)="onCancelEdit($event)">关闭</button>
+        <button md-raised-button color="primary">保存</button>
+      </md-card-actions>
+      
+  </md-card>
+
+  
 
 </div>

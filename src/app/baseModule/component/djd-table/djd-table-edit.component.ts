@@ -1,4 +1,5 @@
-import { Component, Inject } from "@angular/core";
+import { Component, Inject, OnInit, Output, EventEmitter } from "@angular/core";
+import { FormGroup, FormControl, FormBuilder, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 import { MdSort, MdPaginator, MdPaginatorIntl, MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 
 
@@ -7,17 +8,28 @@ import { MdSort, MdPaginator, MdPaginatorIntl, MdDialog, MdDialogRef, MD_DIALOG_
   selector: 'djd-table-edit',
   templateUrl: './djd-table-edit.component.html',
 })
-export class DjdTableEditDialog {
+export class DjdTableEdit implements OnInit {
 
-  constructor(
-    public dialogRef: MdDialogRef<DjdTableEditDialog>,
-    @Inject(MD_DIALOG_DATA) public data: any) {
+  private editForm: FormGroup;
 
+  @Output() public onCloseEdit = new EventEmitter();
+
+  constructor() {
       
   }
 
-  // onNoClick(): void {
-  //   this.dialogRef.close();
-  // }
+  ngOnInit() {
+    
+    
+
+  }
+
+  onSubmit(e) {
+    console.log(99, this.editForm.value);
+  }
+
+  onCancelEdit(e) {
+    this.onCloseEdit.emit();
+  }
 
 }

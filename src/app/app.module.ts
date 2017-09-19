@@ -26,6 +26,7 @@ import { LoginComponent } from './login/login.component';
     BrowserModule,
     BrowserAnimationsModule,
     HttpModule,
+    FormsModule,
     ReactiveFormsModule,
     BaseModule,
 

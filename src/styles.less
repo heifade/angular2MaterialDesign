@@ -1,3 +1,47 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+@keyframes showing {
+  0%{
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.showing {
+  animation-name: showing;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+}
+
+
+.md-card-edit {
+  width: 500px;
+  margin: 20px auto;
+
+  md-card-header {
+    display: block;
+    md-card-title {
+      text-align: center;
+    }
+  }
+
+  
+
+  .md-card-edit-item {
+    display: block ;
+    width: auto ;
+  }
+
+  md-card-actions {
+    button {
+      float: right;
+    }
+  }
+}
+
+

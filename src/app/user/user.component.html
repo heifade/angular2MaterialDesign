@@ -1,1 +1,30 @@
-<djd-table [params]="params"></djd-table>
+<div>
+  <djd-table [params]="params">
+
+    
+    <form class="example-form" (ngSubmit)="onSubmit()" novalidate [formGroup]="editForm">
+      <md-form-field class="md-card-edit-item" [formGroup]="editForm">
+        <input mdInput placeholder="用户名" formControlName="AdminCode" />
+      </md-form-field>
+      <md-form-field class="md-card-edit-item" [formGroup]="editForm">
+        <input mdInput placeholder="姓名" formControlName="AdminName" />
+      </md-form-field>
+      <md-form-field class="md-card-edit-item" [formGroup]="editForm">
+        <input mdInput placeholder="性别" formControlName="Gender" />
+      </md-form-field>
+      <md-form-field class="md-card-edit-item" [formGroup]="editForm">
+        <input mdInput placeholder="电话号码" formControlName="PhoneNo" />
+      </md-form-field>
+      <md-form-field class="md-card-edit-item" [formGroup]="editForm">
+        <input mdInput placeholder="出生年月" formControlName="Birthday" />
+      </md-form-field>
+      <md-form-field class="md-card-edit-item" [formGroup]="editForm">
+        <input mdInput placeholder="身份证号" formControlName="CardNo" />
+      </md-form-field>
+    </form>
+
+
+
+  </djd-table>
+
+</div>
