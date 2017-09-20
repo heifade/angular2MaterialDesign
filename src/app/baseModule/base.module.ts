@@ -8,10 +8,15 @@ import { ImportModule } from './import.module';
 
 import { HttpService } from './service/http.service';
 import { LocalStorageService } from './service/localStorage.service';
+import { GlobalService } from './service/global.service';
+
 import { DjdTable } from './component/djd-table/djd-table.component';
 import { DjdTableEdit } from './component/djd-table-edit/djd-table-edit.component';
 import { DjdPaginator } from './component/djd-paginator/djd-paginator.component';
 import { DjdFormField } from './component/djd-form-field/djd-form-field.component';
+import { DjdWait } from './component/djd-wait/djd-wait.component';
+import { DjdMessageDialog, DjdMessage } from './component/djd-message-dialog/djd-message-dialog.component';
+import { DjdSidebarMenu } from './component/djd-sidebar-menu/djd-sidebar-menu.component';
 
 
 
@@ -22,9 +27,13 @@ import { DjdFormField } from './component/djd-form-field/djd-form-field.componen
     DjdTableEdit,
     DjdPaginator,
     DjdFormField,
+    DjdWait,
+    DjdMessage,
+    DjdMessageDialog,
+    DjdSidebarMenu,
   ],
   entryComponents: [
-    // DjdTableEditDialog,
+    DjdMessageDialog,
   ],
   imports: [
     CommonModule,
@@ -40,10 +49,15 @@ import { DjdFormField } from './component/djd-form-field/djd-form-field.componen
     DjdTable,
     DjdTableEdit,
     DjdFormField,
+    DjdWait,
+    DjdMessage,
+    DjdMessageDialog,
+    DjdSidebarMenu,
   ],
   providers: [
     LocalStorageService,
     HttpService,
+    GlobalService,
   ]
 })
 

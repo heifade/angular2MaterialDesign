@@ -20,7 +20,8 @@
       "prefix": "app",
       "styles": [
         "styles.less",
-        "./app/bootstrap/css/bootstrap.min.css"
+        "./app/bootstrap/css/bootstrap.min.css",
+        "./app/bootstrap/css/bootstrap-responsive.min.css"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",

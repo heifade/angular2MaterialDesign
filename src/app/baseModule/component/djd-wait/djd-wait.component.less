@@ -1,0 +1,18 @@
+@import url('../../less/base.less');
+
+.wait {
+  & .wait-back {
+    .mask-layer;
+    z-index: 2001;
+  }
+
+  & .wait-img {
+    width: 94px;
+    height: 94px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2002;
+  }
+}

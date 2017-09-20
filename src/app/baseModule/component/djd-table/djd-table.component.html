@@ -5,14 +5,14 @@
       <table class="table">
         <thead>
           <tr>
-            <th *ngFor="let field of params.fields">{{field.title}}</th>
-            <th *ngFor="let option of params.options" [style.width]="option.width || '50px'">{{option.title}}</th>
+            <th *ngFor="let field of params.dataTable.fields">{{field.title}}</th>
+            <th *ngFor="let option of params.dataTable.options" [style.width]="option.width || '50px'">{{option.title}}</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let item of dataList">
-            <td *ngFor="let field of params.fields" [style.text-align]="field.textAlign || 'left'">{{item[field.field]}}</td>
-            <td *ngFor="let option of params.options" [style.text-align]="option.textAlign || 'center'">
+            <td *ngFor="let field of params.dataTable.fields" [style.text-align]="field.textAlign || 'left'">{{item[field.field]}}</td>
+            <td *ngFor="let option of params.dataTable.options" [style.text-align]="option.textAlign || 'center'">
               <md-icon (click)="optionClick(option, $event)">{{option.icon}}</md-icon>
             </td>
           </tr>
@@ -28,7 +28,7 @@
   <md-card class="md-card-edit"  (onCloseEdit)="onCloseEdit($event)" [class.hide]="!isEditing" [class.showing]="isEditing">
     <form class="example-form" (ngSubmit)="onSubmit()" novalidate [formGroup]="editForm">
       <md-card-header>
-        <md-card-title>编辑用户</md-card-title>
+        <md-card-title>{{params.detail.title}}</md-card-title>
       </md-card-header>
       <md-card-content>
   

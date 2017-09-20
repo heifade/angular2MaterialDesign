@@ -1,0 +1,12 @@
+<div class="djd-message-dialog">
+  <div md-dialog-title>{{params.title}}</div>
+  <md-dialog-content>
+    <md-icon [style.color]="params.iconColor">{{params.icon}}</md-icon>
+    <span>{{params.message}}</span>
+  </md-dialog-content>
+  <md-dialog-actions>
+    <div class="button" *ngFor="let button of params.buttons" (click)="onButtonClick($event, button)" [style.width]="(100 / params.buttons.length) + '%'">
+      {{button.text}}
+    </div>
+  </md-dialog-actions>
+</div>

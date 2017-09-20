@@ -4,7 +4,6 @@ import { MdSort, MdPaginator, MdPaginatorIntl, MdDialog, MdDialogRef } from '@an
 import { FormGroup, FormControl, FormBuilder, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 
 import { Http, Response } from "@angular/http";
-import { TablePaginationDataSourceService } from '../../service/tablePaginationDataSource.service';
 
 import { G } from '../../../common/G';
 import { HttpService, ResponseData } from '../../service/http.service';
@@ -38,12 +37,17 @@ export interface DjdTableParamsOption {
  * DjdTable 参数接口
  */
 export interface DjdTableParams {
-  url: string; //url
-  fields: Array<DjdTableParamsField>; //字段
-  options?: Array<DjdTableParamsOption>; //操作
-  getUrlParams?: () => object; //获取url的方法
-  fetchData?({ pageIndex, pageSize }): Promise<ResponseData>; // 当本组件定义的API访问方式无法满足需要时，可以自定义API访问方式
-  controls?: [[string, AbstractControl]]; // 验证
+  dataTable: {
+    url: string; //url
+    fields: Array<DjdTableParamsField>; //字段
+    options?: Array<DjdTableParamsOption>; //操作
+    getUrlParams?: () => object; //获取url的方法
+    fetchData?({ pageIndex, pageSize }): Promise<ResponseData>; // 当本组件定义的API访问方式无法满足需要时，可以自定义API访问方式
+  },
+  detail: {
+    title: string; // 标题
+    controls?: [[string, AbstractControl]]; // 验证
+  }
 }
 
 @Component({
@@ -62,15 +66,9 @@ export class DjdTable implements OnInit, AfterContentInit {
   private dataList: Array<any> = [];
   private rowsCount: number;
   private pageSize = G.PageSize;
-
   private editForm: FormGroup;
 
-  
-
-
-
   @ContentChildren(DjdFormField) formFieldList: QueryList<DjdFormField>;
-  
   
   constructor(private httpService: HttpService, private dialog: MdDialog) {
 
@@ -81,7 +79,7 @@ export class DjdTable implements OnInit, AfterContentInit {
   ngOnInit() {
     this.fetchData({ pageIndex: 1, pageSize: G.PageSize });
 
-    let controls = this.params.controls;
+    let controls = this.params.detail.controls;
     if(controls) {
       controls.forEach(([name, control]) => {
         this.editForm.addControl(name, control);
@@ -103,8 +101,8 @@ export class DjdTable implements OnInit, AfterContentInit {
 
   fetchData({ pageIndex, pageSize }) {
     // 当本组件定义的API访问方式无法满足需要时，可以自定义API访问方式
-    if (this.params.fetchData) {
-      let promise = this.params.fetchData({ pageIndex, pageSize });
+    if (this.params.dataTable.fetchData) {
+      let promise = this.params.dataTable.fetchData({ pageIndex, pageSize });
       promise.then((res) => {
         if (res.success) {
           let data = res.data;
@@ -114,12 +112,12 @@ export class DjdTable implements OnInit, AfterContentInit {
       });
     }
     else {
-      let url = this.params.url;
+      let url = this.params.dataTable.url;
       url = this.addUrlParam(url, 'PageIndex', pageIndex - 1);
       url = this.addUrlParam(url, 'PageCapacity', pageSize);
 
       // 向url里添加条件
-      let urlParams = this.params.getUrlParams();
+      let urlParams = this.params.dataTable.getUrlParams();
       if (urlParams) {
         for (let key in urlParams) {
           url = this.addUrlParam(url, key, urlParams[key]);

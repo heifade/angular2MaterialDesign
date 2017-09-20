@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter, ElementRef } from '@ang
 import { FormGroup, FormControl, FormBuilder, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 import { Router } from "@angular/router";
 import { LoginService } from './login.service';
-// import { G } from '../../common/G';
+import { GlobalService } from '../baseModule/service/global.service';
 
 @Component({
   selector: 'login',
@@ -18,9 +18,10 @@ export class LoginComponent implements OnInit {
   public onLogin = new EventEmitter<Object>();
 
   constructor(
-    public element: ElementRef,
-    public router: Router,
-    public loginService: LoginService,
+    private element: ElementRef,
+    private router: Router,
+    private loginService: LoginService,
+    private globalService: GlobalService,
   ) {
 
   }
@@ -72,15 +73,23 @@ export class LoginComponent implements OnInit {
     // G.messageBoxComponent.showWarn ({message: '删除确认'});
 
 
-    // G.waitComponent.show();
+    // 
+
+    // this.globalService.messageDialog.showInfoMessageDialog({message: "您好！"});
+    // this.globalService.messageDialog.showWarnMessageDialog({message: '警告'});
+    // this.globalService.messageDialog.showErrorMessageDialog({message: '出错了！'});
+    // this.globalService.messageDialog.showConfirmMessageDialog({message: "是否确定删除？"});
+
+
+    this.globalService.wait.setVisible(true);
     this.loginService.login({
       data: this.loginForm.value,
       onSuccess: () => {
-        // this.globalService.hideWaitBox();
-        // G.waitComponent.hide();
+        this.globalService.wait.setVisible(false);
         this.router.navigateByUrl('user');
       }
     });
+
   }
 
 }
