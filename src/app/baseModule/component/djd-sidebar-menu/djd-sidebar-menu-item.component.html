@@ -1,0 +1,18 @@
+
+<a href="{{menuItemData.url}}" *ngIf="!!menuItemData.subMenuItemList">
+  <md-icon style="width:16px;height:16px;font-size:16px">{{menuItemData.icon}}</md-icon>
+  <span class="title">{{menuItemData.text}}</span>
+  <span class="arrow"></span>
+</a>
+<a href="javascript:void(0)" (click)="onItemClick(menuItemData)" *ngIf="!menuItemData.subMenuItemList">
+  <md-icon style="width:16px;height:16px;font-size:16px">{{menuItemData.icon}}</md-icon>
+  <span class="title">{{menuItemData.text}}</span>
+</a>
+<ul class="sub-menu" *ngIf="menuItemData.subMenuItemList">
+  <li djd-sidebar-menu-item
+    [class.active]="subMenuItem.active"
+    *ngFor="let subMenuItem of menuItemData.subMenuItemList"
+    [menuItemData]="subMenuItem"
+    (onMenuItemClick)="onItemClick($event)">
+  </li>
+</ul>

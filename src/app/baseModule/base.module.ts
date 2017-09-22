@@ -17,6 +17,7 @@ import { DjdFormField } from './component/djd-form-field/djd-form-field.componen
 import { DjdWait } from './component/djd-wait/djd-wait.component';
 import { DjdMessageDialog, DjdMessage } from './component/djd-message-dialog/djd-message-dialog.component';
 import { DjdSidebarMenu } from './component/djd-sidebar-menu/djd-sidebar-menu.component';
+import { DjdSidebarMenuItem } from './component/djd-sidebar-menu/djd-sidebar-menu-item.component';
 
 
 
@@ -31,6 +32,7 @@ import { DjdSidebarMenu } from './component/djd-sidebar-menu/djd-sidebar-menu.co
     DjdMessage,
     DjdMessageDialog,
     DjdSidebarMenu,
+    DjdSidebarMenuItem,
   ],
   entryComponents: [
     DjdMessageDialog,
@@ -53,6 +55,7 @@ import { DjdSidebarMenu } from './component/djd-sidebar-menu/djd-sidebar-menu.co
     DjdMessage,
     DjdMessageDialog,
     DjdSidebarMenu,
+    DjdSidebarMenuItem,
   ],
   providers: [
     LocalStorageService,

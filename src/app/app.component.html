@@ -10,8 +10,61 @@
 </div> -->
 
 <div class="">
-  <!-- <djd-sidebar-menu></djd-sidebar-menu> -->
-  <router-outlet></router-outlet>
+  
+  <!-- <router-outlet></router-outlet>
   <djd-wait></djd-wait>
-  <djd-message></djd-message>
+  <djd-message></djd-message> -->
+
+
+  <!-- BEGIN HEADER -->
+  <div class="header navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <div class="brand">
+            <img src="../img/logo.png" style="width:25px;height:25px;"/>
+            <span ng-bind="config.title"></span>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    <div class="page-container">
+      <div class="page-sidebar nav-collapse">
+        <!--左边菜单栏-->
+        <djd-sidebar-menu></djd-sidebar-menu>
+      </div>
+      <div class="page-content">
+        <div class="container-fluid">
+          <div class="row-fluid">
+            <div class="span12">
+              <div directive-layout-setting></div>
+              <!--当前地址显示栏-->
+              <div directive-address-bar menu-id="menuId"></div>
+            </div>
+          </div>
+  
+          <div ng-view></div>
+  
+          <div directive-map-frame></div>
+  
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <div class="footer-inner">
+        <span ng-bind="config.copyRight"></span>
+        Ver:<span ng-bind="config.version"></span>
+      </div>
+      <div class="footer-tools">
+        <span class="go-top">
+          <i class="icon-angle-up"></i>
+        </span>
+      </div>
+    </div>
+
+
+
 </div>
+
+
+    
