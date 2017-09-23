@@ -72,26 +72,42 @@ export class DjdSidebarMenu implements OnInit {
   // }
 
   private setCurrentMenuItem(menuItemData: MenuItemData) {
-    let getActiveMenuItem = (list: Array<MenuItemData>, level) => {
-      let haveActive = false;
-      (list || []).forEach((h, i) => {
-        if (h == menuItemData) {
-          h.active = true;
-          haveActive = true;
-        } else {
-          h.active = false;
+    // 给选中的项设置选中标识
+    let setActiveMenuItem = (list: Array<MenuItemData>) => {
+      if (list) {
+        for (let i = 0; i < list.length; i++) {
+          let h = list[i];
+          if (h == menuItemData) {
+            h.active = true;
+          }
+          else {
+            h.active = false;
+          }
+          delete h.activePath;
+          setActiveMenuItem(h.subMenuItemList);
         }
-        if (getActiveMenuItem(h.subMenuItemList, level + 1)) {
-          haveActive = true;
-        }
-
-        if (haveActive && level == 1) {
-          h.start = true;
-        }
-      });
-      return haveActive;
+      }
     }
-    getActiveMenuItem(this.menuItemList, 1);
+    setActiveMenuItem(this.menuItemList);
+
+    // 给选中的项的叶子节点设置标识
+    let setPathActiveMenuItem = (list: Array<MenuItemData>) => {
+      if (list) {
+        for (let i = 0; i < list.length; i++) {
+          let h = list[i];
+
+          if (setPathActiveMenuItem(h.subMenuItemList)) {
+            h.activePath = true;
+            return true;
+          }
+
+          if (h.active) {
+            return true;
+          }
+        }
+      }
+    }
+    setPathActiveMenuItem(this.menuItemList);
 
   }
 

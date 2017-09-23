@@ -18,6 +18,7 @@ import { DjdWait } from './component/djd-wait/djd-wait.component';
 import { DjdMessageDialog, DjdMessage } from './component/djd-message-dialog/djd-message-dialog.component';
 import { DjdSidebarMenu } from './component/djd-sidebar-menu/djd-sidebar-menu.component';
 import { DjdSidebarMenuItem } from './component/djd-sidebar-menu/djd-sidebar-menu-item.component';
+import { DjdNavBar } from './component/djd-nav-bar/djd-nav-bar.component';
 
 
 
@@ -33,6 +34,7 @@ import { DjdSidebarMenuItem } from './component/djd-sidebar-menu/djd-sidebar-men
     DjdMessageDialog,
     DjdSidebarMenu,
     DjdSidebarMenuItem,
+    DjdNavBar,
   ],
   entryComponents: [
     DjdMessageDialog,
@@ -56,6 +58,7 @@ import { DjdSidebarMenuItem } from './component/djd-sidebar-menu/djd-sidebar-men
     DjdMessageDialog,
     DjdSidebarMenu,
     DjdSidebarMenuItem,
+    DjdNavBar,
   ],
   providers: [
     LocalStorageService,

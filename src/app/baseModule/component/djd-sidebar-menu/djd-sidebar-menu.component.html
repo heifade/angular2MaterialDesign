@@ -1,19 +1,7 @@
-<ul class="page-sidebar-menu">
-  <li>
-    <div class="sidebar-toggler hidden-phone"></div>
-  </li>
-  <!-- <li>
-      <form class="sidebar-search">
-        <div class="input-box">
-          <a href="javascript:;" class="remove"></a>
-          <input type="text" placeholder="Search..." />
-          <input type="button" class="submit" value=" " />
-        </div>
-      </form>
-    </li> -->
-
-  <li djd-sidebar-menu-item
-    *ngFor="let menuItem of menuItemList"
-    [menuItemData]="menuItem"
-    (onMenuItemClick)="onMenuItemClick($event)"></li>
-</ul>
+<div class="djd-sidebar-menu">
+  <ul class="">
+    <djd-sidebar-menu-item *ngFor="let menuItem of menuItemList"
+      [menuItemData]="menuItem" (onMenuItemClick)="onMenuItemClick($event)">
+    </djd-sidebar-menu-item>
+  </ul>
+</div>

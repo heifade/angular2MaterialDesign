@@ -1,18 +1,20 @@
 
-<a href="{{menuItemData.url}}" *ngIf="!!menuItemData.subMenuItemList">
-  <md-icon style="width:16px;height:16px;font-size:16px">{{menuItemData.icon}}</md-icon>
-  <span class="title">{{menuItemData.text}}</span>
-  <span class="arrow"></span>
-</a>
-<a href="javascript:void(0)" (click)="onItemClick(menuItemData)" *ngIf="!menuItemData.subMenuItemList">
-  <md-icon style="width:16px;height:16px;font-size:16px">{{menuItemData.icon}}</md-icon>
-  <span class="title">{{menuItemData.text}}</span>
-</a>
-<ul class="sub-menu" *ngIf="menuItemData.subMenuItemList">
-  <li djd-sidebar-menu-item
-    [class.active]="subMenuItem.active"
-    *ngFor="let subMenuItem of menuItemData.subMenuItemList"
-    [menuItemData]="subMenuItem"
-    (onMenuItemClick)="onItemClick($event)">
-  </li>
-</ul>
+<li [class.active]="menuItemData.active">
+  <a href="javascript:void(0)" (click)="onSubMenuClick(menuItemData, $event)" *ngIf="!!menuItemData.subMenuItemList" [class.activePath]="menuItemData.activePath">
+    <md-icon class="icon">{{menuItemData.icon}}</md-icon>
+    <span>{{menuItemData.text}}</span>
+    <md-icon class="arrow">keyboard_arrow_left</md-icon>
+  </a>
+  <a href="{{menuItemData.url}}" (click)="onItemClick(menuItemData)" *ngIf="!menuItemData.subMenuItemList">
+    <md-icon class="icon">{{menuItemData.icon}}</md-icon>
+    <span>{{menuItemData.text}}</span>
+    <md-icon class="selected" *ngIf="menuItemData.active">gps_fixed</md-icon>
+  </a>
+  <ul class="sub-menu" *ngIf="menuItemData.subMenuItemList" style="display:none">
+    <djd-sidebar-menu-item
+      *ngFor="let subMenuItem of menuItemData.subMenuItemList"
+      [menuItemData]="subMenuItem"
+      (onMenuItemClick)="onItemClick($event)">
+    </djd-sidebar-menu-item>
+  </ul>
+</li>

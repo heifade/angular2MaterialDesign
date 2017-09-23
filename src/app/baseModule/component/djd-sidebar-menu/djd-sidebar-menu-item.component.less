@@ -1,0 +1,86 @@
+
+@paddingLeft: 10px;
+@paddingLeftDiffer: 20px;
+
+a {
+  padding: 10px @paddingLeft;
+  border-top: 1px solid #5c5c5c;
+  display: block;
+  text-decoration: none;
+  position: relative;
+  color: #ffffff;
+
+  .icon, .arrow, .selected {
+    position: absolute;
+    top: 11px;
+    width: 17px;
+    height: 17px;
+    font-size: 17px;
+    line-height: 17px;
+  }
+  .icon {
+    margin-right: 5px;
+  }
+  span {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 20px;
+    padding: 0 0 0 22px;
+  }
+
+  .arrow {
+    right: 5px;
+
+    transition-duration: 0.3s;
+    transform: rotateZ(0deg);
+    transition-property: 'transform';
+
+    &.open {
+      transition-duration: 0.3s;
+      transform: rotateZ(-90deg);
+      transition-property: 'transform';
+    }
+  }
+  .selected {
+    position: absolute;
+    right: 5px;
+  }
+}
+
+ul {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+  
+  & > djd-sidebar-menu-item > li { //二级菜单
+
+    & > a {
+      padding-left: @paddingLeft + @paddingLeftDiffer;
+    }
+    
+    & > ul > djd-sidebar-menu-item > li { //三级菜单
+      & > a {
+        padding-left: @paddingLeft + @paddingLeftDiffer * 2;
+      }
+
+      & > ul > djd-sidebar-menu-item > li { //四级菜单
+        & > a {
+          padding-left: @paddingLeft + @paddingLeftDiffer * 3;
+        }
+      }
+    }
+  }
+}
+
+
+li a:hover {
+  background-color: #303030;
+}
+li.active a {
+  background-color: #e02222;
+  transition-duration: 0.3s;
+  transition-property: 'background-color';
+}
+li a.activePath {
+  background-color: #303030;
+}
