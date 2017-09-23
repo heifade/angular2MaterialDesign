@@ -1,7 +1,12 @@
 
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 
 
+interface ILogoIconData {
+  url: string,
+  icon: string,
+  color?: string,
+}
 
 @Component({
   selector: 'djd-nav-bar',
@@ -13,16 +18,20 @@ import { Component, OnInit, Input } from '@angular/core';
 export class DjdNavBar implements OnInit {
 
   @Input() public title: string;
-  @Input() public logoUrl: string;
+  @Input() public logo: ILogoIconData;
 
+  @Output() public option = new EventEmitter<any>();
 
   constructor() {
     
   }
 
-
   ngOnInit(): void {
-    
+
+  }
+
+  onOptionClick(e) {
+    this.option.emit(e);
   }
 
 }

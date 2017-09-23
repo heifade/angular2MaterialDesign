@@ -1,16 +1,12 @@
 <nav class="navbar navbar-inverse navbar-fixed-top djd-nav-bar">
   <div class="navbar-header">
     <div class="navbar-brand">
-      <img src="{{logoUrl}}" class="logo" />
+      <img *ngIf="logo.url" src="{{logo.url}}" class="logo" />
+      <md-icon class="logo" *ngIf="logo.icon" [style.color]="logo.color">{{logo.icon}}</md-icon>
       <span class="title">{{title}}</span>
     </div>
-
-
-    <!-- <div class="container-fluid">
-      <div class="brand">
-        <img src="{{logoUrl}}" style="width:25px;height:25px;"/>
-        <span class="navbar-text">{{title}}</span>
-      </div>
-    </div> -->
+  </div>
+  <div class="option" (click)="onOptionClick($event)">
+    <md-icon>power_settings_new</md-icon>
   </div>
 </nav>

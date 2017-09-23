@@ -1,31 +1,36 @@
 <div class="userLoginComponent">
-  <form [formGroup]="loginForm" (ngSubmit)="login($event)" novalidate>
-    <table>
-      <tbody>
-        <tr>
-          <td>
-            <!-- <text-box label="用户名" [form]="loginForm" controlName="userName"></text-box> -->
-            <md-form-field class="example-full-width">
-              <input mdInput placeholder="用户名" formControlName="userName" />
-              <md-error *ngIf="loginForm.controls['userName'].hasError('required')">用户名不能为空！</md-error>
-            </md-form-field>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <!-- <text-box label="密码" [form]="loginForm" controlName="password" type="password"></text-box> -->
-            <md-form-field class="example-full-width">
-              <input mdInput placeholder="密码" formControlName="password" type="password" />
-              <md-error *ngIf="loginForm.controls['password'].hasError('required')">密码不能为空！</md-error>
-            </md-form-field>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="2" class="thBtns">
-            <button md-raised-button color="primary">登录</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </form>
+  <div class="loginFrame">
+    <form [formGroup]="loginForm" (ngSubmit)="login($event)" novalidate>
+      <table >
+        <tbody>
+          <tr>
+            <td colspan="2" class="title">请登录</td>
+          </tr>
+          <tr>
+            <td>
+              <md-form-field class="example-full-width">
+                <md-icon mdPrefix>person</md-icon>
+                <input mdInput placeholder="用户名" formControlName="userName" />
+                <md-error *ngIf="loginForm.controls['userName'].hasError('required')">用户名不能为空！</md-error>
+              </md-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <md-form-field class="example-full-width">
+                <md-icon mdPrefix>vpn_key</md-icon>
+                <input mdInput placeholder="密码" formControlName="password" type="password" />
+                <md-error *ngIf="loginForm.controls['password'].hasError('required')">密码不能为空！</md-error>
+              </md-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" class="thBtns">
+              <button md-raised-button color="primary">登录</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </div>
 </div>

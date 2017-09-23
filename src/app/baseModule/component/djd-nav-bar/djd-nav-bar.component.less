@@ -1,16 +1,20 @@
+@height: 42px;
+
 .djd-nav-bar {
-  min-height: 42px;
+  min-height: @height;
   margin-bottom: 0px;
   border-bottom: none;
+  position: relative;
 
   .navbar-brand {
     display: table;
     padding: 6px;
-    height: 42px;
+    height: @height;
 
     .logo {
       width: 29px;
       height: 29px;
+      font-size: 29px;
       display:table-cell;
     }
 
@@ -20,5 +24,21 @@
       vertical-align: middle;
       padding-left: 10px;
     }
+  }
+
+  .option {
+    height: @height;
+    position: absolute;
+    right: 5px;
+    cursor: pointer;
+
+    md-icon {
+      font-size: 24px;
+      color: #ff9536;
+      line-height: @height;
+    }
+    
+
+    
   }
 }

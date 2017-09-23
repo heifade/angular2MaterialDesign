@@ -1,5 +1,5 @@
 
-import { Component, OnInit, Input, ContentChildren, QueryList } from '@angular/core';
+import { Component, OnInit, Input, ContentChildren, QueryList, Output, EventEmitter } from '@angular/core';
 import { MenuItemData, DjdSidebarMenuItem } from './djd-sidebar-menu-item.component';
 
 
@@ -13,33 +13,8 @@ import { MenuItemData, DjdSidebarMenuItem } from './djd-sidebar-menu-item.compon
 
 export class DjdSidebarMenu implements OnInit {
 
-  private menuItemList: Array<MenuItemData> = [{
-    text: '一级菜单1', icon: 'chrome_reader_mode', subMenuItemList: [{
-      text: '二级菜单1', icon: 'date_range', subMenuItemList: [
-        { text: '三级菜单1', icon: 'date_range', url: 'javascript:void(0);' },
-        { text: '三级菜单2', icon: 'date_range', url: 'javascript:void(0);' },
-        { text: '三级菜单3', icon: 'date_range', url: 'javascript:void(0);' },
-      ]
-    }, {
-      text: '二级菜单2', icon: 'chrome_reader_mode', subMenuItemList: [
-        { text: '三级菜单4', icon: 'date_range', url: 'javascript:void(0);' },
-        { text: '三级菜单5', icon: 'date_range', url: 'javascript:void(0);' },
-        { text: '三级菜单6', icon: 'date_range', url: 'javascript:void(0);' },
-      ],
-    }]
-  }, {
-    text: '一级菜单2', icon: 'chrome_reader_mode', subMenuItemList: [
-      { text: '二级菜单3', icon: 'date_range', url: 'javascript:void(0);' },
-      { text: '二级菜单4', icon: 'date_range', url: 'javascript:void(0);' },
-      { text: '二级菜单5', icon: 'date_range', url: 'javascript:void(0);' },
-    ]
-  }, {
-    text: '一级菜单3', icon: 'chrome_reader_mode', url: 'javascript:void(0);'
-  }, {
-    text: '一级菜单4', icon: 'chrome_reader_mode', url: 'javascript:void(0);'
-  }];
-
-
+  @Input() menuItemList : Array<MenuItemData>;
+  @Output() menuItemClick = new EventEmitter<MenuItemData>();
 
   constructor() {
 
@@ -113,7 +88,8 @@ export class DjdSidebarMenu implements OnInit {
 
   private onMenuItemClick(menuItemData) {
     this.setCurrentMenuItem(menuItemData);
-    console.log(this.menuItemList)
+
+    this.menuItemClick.emit(menuItemData);
   }
 
 }

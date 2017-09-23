@@ -104,29 +104,30 @@ export class DjdMessage implements OnInit {
    * 问题确认框
    * @param param 参数
    */
-  public showConfirmMessageDialog(param: {message: string, title?: string}) {
+  public showConfirmMessageDialog(param: {message: string, title?: string, onConfirm:(close: () => void) => void }) {
     let params = {
       title: param.title || '请确认',
       message: param.message,
       icon: 'help_outline',
       iconColor: '#d9534f',
       buttons: [
-        {text: '确定', click: (close) => { close(); }},
+        {
+          text: '确定', click: (close) => {
+            param.onConfirm(() => {
+              close();
+            })
+          }
+        },
         {text: '取消', click: (close) => { close(); }},
       ]
     }
     this.show(params);
   }
 
-
-
-
   ngOnInit(): void {
 
   }
-
 }
-
 
 @Component({
   selector: 'djd-message-dialog',

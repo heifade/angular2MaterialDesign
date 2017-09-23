@@ -11,7 +11,7 @@ export class LoginService {
 
   }
 
-  public login({ data: { userName, password }, onSuccess }) {
+  public login({ data: { userName, password }, onSuccess, onError }) {
     let url = '/api/User/AdminLogin';
 
     this.httpService.post({
@@ -22,10 +22,10 @@ export class LoginService {
     }).then((res: ResponseData) => {
       if(res.success) {
         this.localStorageService.set(HttpService.keyToken, res.data.TokenCode);
-        onSuccess();
+        onSuccess(res.data);
       }
       else {
-        console.log(55, res);
+        onError(res.message);
       }
     });
   }

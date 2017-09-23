@@ -13,14 +13,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BaseModule } from './baseModule/base.module';
 
 
-import { UserComponent } from './user/user.component';
 import { LoginComponent } from './login/login.component';
 import { DjdMessageDialog } from './baseModule/component/djd-message-dialog/djd-message-dialog.component';
+
+import { IndexModule } from './index/index.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserComponent,
     LoginComponent
   ],
   imports: [
@@ -30,6 +30,7 @@ import { DjdMessageDialog } from './baseModule/component/djd-message-dialog/djd-
     FormsModule,
     ReactiveFormsModule,
     BaseModule,
+    IndexModule,
 
 
     RouterModule.forRoot(appRoutes)

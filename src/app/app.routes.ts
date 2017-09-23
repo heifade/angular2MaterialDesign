@@ -2,6 +2,7 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { UserComponent } from './user/user.component';
+import { PageIndexComponent } from './index/index.component';
 
 
 export const appRoutes=[
@@ -10,17 +11,12 @@ export const appRoutes=[
 		redirectTo:'posts',
 		pathMatch:'full'
 	},
-	{
-		path:'',
-		component: LoginComponent
-	},
-	{
-		path:'login',
-		component: LoginComponent
-	},
-	{
-		path:'user',
-		// loadChildren:'./pages/main/main.module#MainModule'
-		component: UserComponent,
-	}
+	{ path:'', component: LoginComponent },
+
+
+	
+	{ path:'login', component: LoginComponent },
+	{ path:'index', component: PageIndexComponent },
+
+
 ];

@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private loginService: LoginService,
     private globalService: GlobalService,
+    private formBuilder: FormBuilder
   ) {
 
   }
@@ -31,40 +32,9 @@ export class LoginComponent implements OnInit {
   }
 
   initFormGroup() {
-    this.loginForm = new FormGroup({
-      "userName": new FormControl('djd',
-        [
-          Validators.required,
-          // Validators.minLength(1),
-          // Validators.maxLength(6),
-          // intValidator(),
-          // floatValidator(),
-          // maxValidator(100),
-          // minValidator(10),
-        ]
-      ),
-      "password": new FormControl('djd',
-        [
-          Validators.required,
-          // Validators.minLength(1),
-          // Validators.maxLength(6),
-          // intValidator(),
-          // floatValidator(),
-          // maxValidator(100),
-          // minValidator(10),
-        ]
-      ),
-      // "picture": new FormControl('',
-      //   [
-      //     Validators.required,
-      //     // Validators.minLength(1),
-      //     // Validators.maxLength(6),
-      //     // intValidator(),
-      //     // floatValidator(),
-      //     // maxValidator(100),
-      //     // minValidator(10),
-      //   ]
-      // )
+    this.loginForm = this.formBuilder.group({
+      "userName": ['',[Validators.required,]],
+      "password": ['',[Validators.required,]],
     });
   }
 
@@ -86,9 +56,14 @@ export class LoginComponent implements OnInit {
       data: this.loginForm.value,
       onSuccess: () => {
         this.globalService.wait.setVisible(false);
-        this.router.navigateByUrl('user');
+        this.router.navigateByUrl('index');
+      },
+      onError: (msg) => {
+        this.globalService.wait.setVisible(false);
+        this.globalService.messageDialog.showErrorMessageDialog({message: msg});
       }
     });
+
 
   }
 

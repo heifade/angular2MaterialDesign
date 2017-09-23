@@ -2,13 +2,14 @@
 @paddingLeft: 10px;
 @paddingLeftDiffer: 20px;
 
-a {
+div {
   padding: 10px @paddingLeft;
   border-top: 1px solid #5c5c5c;
   display: block;
   text-decoration: none;
   position: relative;
   color: #ffffff;
+  cursor: pointer;
 
   .icon, .arrow, .selected {
     position: absolute;
@@ -54,17 +55,17 @@ ul {
   
   & > djd-sidebar-menu-item > li { //二级菜单
 
-    & > a {
+    & > div {
       padding-left: @paddingLeft + @paddingLeftDiffer;
     }
     
     & > ul > djd-sidebar-menu-item > li { //三级菜单
-      & > a {
+      & > div {
         padding-left: @paddingLeft + @paddingLeftDiffer * 2;
       }
 
       & > ul > djd-sidebar-menu-item > li { //四级菜单
-        & > a {
+        & > div {
           padding-left: @paddingLeft + @paddingLeftDiffer * 3;
         }
       }
@@ -73,14 +74,14 @@ ul {
 }
 
 
-li a:hover {
+li div:hover {
   background-color: #303030;
 }
-li.active a {
+li.active div {
   background-color: #e02222;
   transition-duration: 0.3s;
   transition-property: 'background-color';
 }
-li a.activePath {
+li div.activePath {
   background-color: #303030;
 }

@@ -1,0 +1,15 @@
+<div class="djd-page">
+  <div class="djd-page-head">
+    <djd-nav-bar title="{{title}}" [logo]="{icon: 'event_note'}" (option)="onOption($event)"></djd-nav-bar>
+  </div>
+  <div class="djd-page-body">
+    <div class="djd-page-menu">
+      <djd-sidebar-menu [menuItemList]="menuItemList" (menuItemClick)="onMenuItemClick($event)">
+
+      </djd-sidebar-menu>
+    </div>
+    <div class="djd-page-content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
