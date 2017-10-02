@@ -9,21 +9,9 @@ html, body {
   width: 100%;
 }
 
-@keyframes showing {
-  0%{
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
 
-.showing {
-  animation-name: showing;
-  animation-duration: 0.5s;
-  animation-fill-mode: forwards;
-  animation-timing-function: ease-in-out;
-}
+
+
 
 ul {
   list-style: none;
@@ -56,3 +44,11 @@ ul {
 }
 
 
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Chrome/Safari/Opera */
+  -khtml-user-select: none; /* Konqueror */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently not supported by any browser */
+}

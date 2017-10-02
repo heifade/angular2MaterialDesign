@@ -1,5 +1,5 @@
 {
-  "name": "angular2-material-design",
+  "name": "djd-a2-md",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
@@ -10,7 +10,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
-  "private": true,
+  "private": false,
   "dependencies": {
     "@angular/animations": "^4.3.6",
     "@angular/cdk": "^2.0.0-beta.10",
@@ -46,6 +46,7 @@
     "karma-coverage-istanbul-reporter": "^1.2.1",
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "lodash": "^4.17.4",
     "protractor": "~5.1.2",
     "ts-node": "~3.2.0",
     "tslint": "~5.3.2",

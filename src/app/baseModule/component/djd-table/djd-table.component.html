@@ -1,6 +1,7 @@
 <div>
 
-  <div class="djd-table-frame" [class.hide]="isEditing" [class.showing]="!isEditing">
+  <div class="djd-table-frame">
+    <!-- [class.hide]="isEditing" [class.showing]="!isEditing" -->
     <div class="table-frame">
       <table class="table">
         <thead>
@@ -23,28 +24,32 @@
   </div>
 
 
-  
 
-  <md-card class="md-card-edit"  (onCloseEdit)="onCloseEdit($event)" [class.hide]="!isEditing" [class.showing]="isEditing">
-    <form class="example-form" (ngSubmit)="onSubmit()" novalidate [formGroup]="editForm">
-      <md-card-header>
-        <md-card-title>{{params.detail.title}}</md-card-title>
-      </md-card-header>
-      <md-card-content>
-  
-        <ng-content></ng-content>
-  
-      </md-card-content>
-      <md-card-actions>
-        <button md-raised-button (click)="onCancelEdit($event)">关闭</button>
-        <button md-raised-button color="primary">保存</button>
-        <div style="clear: both"></div>
-      </md-card-actions>
-    </form>
-  </md-card>
+  <div [class.show]="isEditing" style="display: none">
+    <div class="divEditFormBack"></div>
+    <div class="divEditForm">
+      <md-card class="md-card-edit" (onCloseEdit)="onCloseEdit($event)">
+        <form (ngSubmit)="onSubmit()" novalidate [formGroup]="editForm">
+          <md-card-header>
+            <md-card-title>{{params.detail.title}}</md-card-title>
+          </md-card-header>
+          <md-card-content>
+
+            <ng-content></ng-content>
+
+          </md-card-content>
+          <md-card-actions>
+            <button md-raised-button (click)="onCancelEdit($event)">关闭</button>
+            <button md-raised-button color="primary">保存</button>
+            <div style="clear: both"></div>
+          </md-card-actions>
+        </form>
+      </md-card>
+    </div>
+  </div>
 
 
-  
+
 
 
 

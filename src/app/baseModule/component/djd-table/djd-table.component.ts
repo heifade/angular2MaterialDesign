@@ -1,5 +1,5 @@
 
-import { Component, ViewChild, OnInit, Input, Inject, ContentChildren, QueryList, AfterViewInit, AfterContentInit } from '@angular/core';
+import { Component, ViewChild, OnInit, Input, Inject, ContentChildren, QueryList, AfterViewInit, AfterContentInit, ElementRef } from '@angular/core';
 import { MdSort, MdPaginator, MdPaginatorIntl, MdDialog, MdDialogRef } from '@angular/material';
 import { FormGroup, FormControl, FormBuilder, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 
@@ -9,6 +9,8 @@ import { G } from '../../../common/G';
 import { HttpService, ResponseData } from '../../service/http.service';
 import { DjdFormField } from '../djd-form-field/djd-form-field.component';
 // import { DjdTableEditDialog } from './djd-table-edit.component';
+
+declare var $: any;
 
 
 /**
@@ -54,7 +56,7 @@ export interface DjdTableParams {
   selector: 'djd-table',
   styleUrls: ['./djd-table.component.less'],
   templateUrl: './djd-table.component.html',
-  providers: [ ]
+  providers: []
 })
 
 export class DjdTable implements OnInit, AfterContentInit {
@@ -69,10 +71,10 @@ export class DjdTable implements OnInit, AfterContentInit {
   private editForm: FormGroup;
 
   @ContentChildren(DjdFormField) formFieldList: QueryList<DjdFormField>;
-  
-  constructor(private httpService: HttpService, private dialog: MdDialog) {
 
-    this.editForm = new FormGroup({ });
+  constructor(private httpService: HttpService, private dialog: MdDialog, public element: ElementRef) {
+
+    this.editForm = new FormGroup({});
 
   }
 
@@ -80,7 +82,7 @@ export class DjdTable implements OnInit, AfterContentInit {
     this.fetchData({ pageIndex: 1, pageSize: G.PageSize });
 
     let controls = this.params.detail.controls;
-    if(controls) {
+    if (controls) {
       controls.forEach(([name, control]) => {
         this.editForm.addControl(name, control);
       });
@@ -144,7 +146,7 @@ export class DjdTable implements OnInit, AfterContentInit {
   }
 
   private optionClick(option, e) {
-    switch(option.doType) {
+    switch (option.doType) {
       case 'edit':
         this.onEdit(option, e);
         break;
@@ -152,18 +154,21 @@ export class DjdTable implements OnInit, AfterContentInit {
         this.onDelete(option, e);
         break;
     }
-    
+
   }
 
   onEdit(option, e) { // 点击编辑按钮时触发
     this.isEditing = true;
+
+    $(this.element.nativeElement).find('.divEditForm').slideDown('fast');
+
   }
 
   onDelete(option, e) { // 点击删除按钮时触发
-    
+
   }
 
-  onCloseEdit(e){ // 关闭编辑页面
+  onCloseEdit(e) { // 关闭编辑页面
     this.isEditing = false;
   }
 

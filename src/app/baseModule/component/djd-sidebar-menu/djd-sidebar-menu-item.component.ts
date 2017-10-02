@@ -1,6 +1,7 @@
 
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
+import { debounce } from 'lodash/debounce'
 
 declare var $: any;
 
@@ -62,6 +63,7 @@ export class DjdSidebarMenuItem implements OnInit {
   }
 
   onSubMenuClick(menuItemData, e: Event) {
+
     let $a = $(e.target);
     let $li = $a.closest('li');
     if(!$li.hasClass('open')) {
@@ -74,7 +76,6 @@ export class DjdSidebarMenuItem implements OnInit {
       $li.children('ul').slideUp('fast');
       $a.find('.arrow').removeClass('open');
     }
-    
     
   }
 }

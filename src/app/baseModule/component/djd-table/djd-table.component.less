@@ -41,3 +41,42 @@
 }
 
 
+.divEditFormBack {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #000000;
+  opacity: 0.5;
+}
+
+
+
+.divEditForm {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+
+.show {
+  @keyframes showing{
+    0% {
+      top: -100%;
+      opacity: 0;
+    }
+    100% {
+      top: 50px;
+      opacity: 1;
+    }
+  }
+  .divEditForm {
+    animation-name: 'showing';
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+  }
+}
+

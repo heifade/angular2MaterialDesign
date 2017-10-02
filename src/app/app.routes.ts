@@ -6,15 +6,8 @@ import { PageIndexComponent } from './index/index.component';
 
 
 export const appRoutes=[
-	{
-		path:'',
-		redirectTo:'posts',
-		pathMatch:'full'
-	},
+
 	{ path:'', component: LoginComponent },
-
-
-	
 	{ path:'login', component: LoginComponent },
 	{ path:'index', component: PageIndexComponent },
 
